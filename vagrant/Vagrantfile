@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "centraide-campagne-en-ligne-box"
+
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.synced_folder "../code", "/vagrant"
+
+  config.vm.synced_folder "files/etc", "/etc/puppet"
+
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "puppet/manifests"
+    puppet.module_path = "puppet/modules"
+    puppet.manifest_file  = "init.pp"
+    puppet.options="--verbose --debug"
+  end
+end
