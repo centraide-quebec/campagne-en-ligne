@@ -8,7 +8,8 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
   config.vm.network :forwarded_port, guest: 80, host: 8080
-  config.vm.synced_folder "../code", "/vagrant"
+  # config.vm.synced_folder "../code", "/vagrant/www-integration"
+  config.vm.synced_folder "../src", "/vagrant/www"
 
   config.vm.synced_folder "files/etc", "/etc/puppet"
 
