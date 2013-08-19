@@ -27,16 +27,26 @@ Comment le faire fonctionner ?
 Et ensuite ?
 ------------
 
-Vous pouvez continuer à travailler dans le dossier *code* sans vous soucier de la machine virtuelle qui vient d'être créé.
+Vous pouvez continuer à travailler dans le dossier *src* sans vous soucier de la machine virtuelle qui vient d'être créé.
+
+Lorsque vous désirez vous rendre dans la machine virtuelle:
+
+    vagrant ssh
 
 Lorsque vous voulez **arrêter** la machine virtuelle:
 
-<pre>vagrant halt</pre>
+    vagrant halt
 
 Lorsque vous voulez la **redémarrer** pour travailler à nouveau:
 
-<pre>vagrant reload</pre>
+    vagrant reload
 
 Lorsque vous voulez **détruire** la machine virtuelle:
 
-<pre>vagrant destroy</pre>
+    vagrant destroy
+    
+Les dossiers importants sur la VM
+---------------------------------
+
+* répertoire hébergeant le code source: */var/www/laravel*.
+* répertoire des logs d'erreurs: */var/logs/apache2/*
