@@ -10,12 +10,14 @@ Vous devez ensuite lui indiquer de construire le reste de ces dépendances comme
 
 ### Construire le projet et le voir à l'oeuvre
 
-1 - Rendez vous dans le dossier */src/laravel*
-2 - Tapez la commande suivante:
+1: Rendez vous dans le dossier */src/laravel*
 
-<pre>composer install --prefer-dist</pre>
+2: Tapez la commande suivante:
 
-3 - *Composer* prends un certain à tout télécharger, mais il finit par débloquer. Vous verrez alors apparaître un dossier *vendor* dans le dossier */src/laravel*
-4 - Tapez l'adresse suivante dans votre navigateur
+    <pre>composer install --prefer-dist</pre>
+
+3: *Composer* prends un certain à tout télécharger, mais il finit par débloquer. Vous verrez alors apparaître un dossier *vendor* dans le dossier */src/laravel*
+
+4: Tapez l'adresse suivante dans votre navigateur
 
 <pre>localhost:8080</pre>
