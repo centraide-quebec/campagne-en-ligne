@@ -15,11 +15,4 @@ file {
     owner    => 'vagrant';
 }
 
-file {
-    '/var/www/public':
-    ensure  => 'directory',
-    mode    => '0755',
-    owner    => 'vagrant';
-}
-
 # class{'mysql::install':}
