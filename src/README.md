@@ -14,10 +14,10 @@ Vous devez ensuite lui indiquer de construire le reste de ces dépendances comme
 
 2: Tapez la commande suivante:
 
-    <pre>composer install --prefer-dist</pre>
+    composer install --prefer-dist
 
 3: *Composer* prends un certain à tout télécharger, mais il finit par débloquer. Vous verrez alors apparaître un dossier *vendor* dans le dossier */src/laravel*
 
 4: Tapez l'adresse suivante dans votre navigateur
 
-<pre>localhost:8080</pre>
+    localhost:8080
