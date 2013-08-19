@@ -17,11 +17,11 @@
 
 **Tab**.
 
-Configurer vos éditeurs/IDE en conséquence.
+Configurez vos éditeurs/IDE en conséquence.
 
 ## Rapporter un bogue
 
-Passez par la [listes des issues de notre projet](https://github.com/centraide-quebec/campagne-en-ligne/issues?state=open)
+Passez par la [liste des issues de notre projet](https://github.com/centraide-quebec/campagne-en-ligne/issues?state=open)
 
 ## Correction de problème
 
