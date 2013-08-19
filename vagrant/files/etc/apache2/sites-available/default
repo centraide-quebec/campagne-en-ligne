@@ -1,24 +1,15 @@
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
 
-	DocumentRoot /vagrant/www
+	DocumentRoot /var/www/laravel/public
 	RewriteLogLevel 9
 	RewriteLog ${APACHE_LOG_DIR}/vagrant.rewrite.log
 
-	<Directory /vagrant/www>
-	    Options +FollowSymLinks
-		RewriteEngine On
-
-		RewriteCond %{REQUEST_FILENAME} !-d
-		RewriteCond %{REQUEST_FILENAME} !-f
-		RewriteRule ^ index.php [L]
-	</Directory>
-
-	ErrorLog ${APACHE_LOG_DIR}/vagrantpress.error.log
+	ErrorLog ${APACHE_LOG_DIR}/vagrant.error.log
 
 	# Possible values include: debug, info, notice, warn, error, crit,
 	# alert, emerg.
 	LogLevel warn
 
-	CustomLog ${APACHE_LOG_DIR}/vagrantpress.access.log combined
+	CustomLog ${APACHE_LOG_DIR}/vagrant.access.log combined
 </VirtualHost>

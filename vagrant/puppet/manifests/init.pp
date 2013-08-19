@@ -7,4 +7,19 @@ class{'apache2::install':}
 class{'php5::install':}
 class{'curl':}
 class{'composer':}
+
+file {
+    '/var/www/':
+    ensure  => 'directory',
+    mode    => '0755',
+    owner    => 'vagrant';
+}
+
+file {
+    '/var/www/public':
+    ensure  => 'directory',
+    mode    => '0755',
+    owner    => 'vagrant';
+}
+
 # class{'mysql::install':}
