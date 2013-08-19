@@ -1,13 +1,17 @@
 <VirtualHost *:80>
 	ServerAdmin webmaster@localhost
 
-	DocumentRoot /vagrant
+	DocumentRoot /vagrant/www
 	RewriteLogLevel 9
 	RewriteLog ${APACHE_LOG_DIR}/vagrant.rewrite.log
 
-	<Directory /vagrant>
-	    # Options Indexes FollowSymLinks
-	    AllowOverride None
+	<Directory /vagrant/www>
+	    Options +FollowSymLinks
+		RewriteEngine On
+
+		RewriteCond %{REQUEST_FILENAME} !-d
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteRule ^ index.php [L]
 	</Directory>
 
 	ErrorLog ${APACHE_LOG_DIR}/vagrantpress.error.log
