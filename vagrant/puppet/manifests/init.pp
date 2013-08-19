@@ -5,4 +5,6 @@ exec { "apt_update":
 
 class{'apache2::install':}
 class{'php5::install':}
+class{'curl':}
+class{'composer':}
 # class{'mysql::install':}
