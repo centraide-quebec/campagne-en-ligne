@@ -4,5 +4,7 @@ class php5::install{
   package{"php5-curl": ensure=>present,}
   package{"php5-gd": ensure=>present,}
   package{"php5-fpm": ensure=>present,}
+  package{"php5-cli": ensure=>present,}
+  package{"php5-mcrypt": ensure=>present,}
   package{"libapache2-mod-php5": ensure=>present,}
 }
