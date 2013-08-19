@@ -1,0 +1,6 @@
+[submodule "vagrant/puppet/modules/curl"]
+	path = vagrant/puppet/modules/curl
+	url = git@github.com:experience/vagrant-puppet-curl.git
+[submodule "vagrant/puppet/modules/composer"]
+	path = vagrant/puppet/modules/composer
+	url = git@github.com:experience/vagrant-puppet-composer.git
