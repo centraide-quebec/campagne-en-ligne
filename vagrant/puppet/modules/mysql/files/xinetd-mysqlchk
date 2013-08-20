@@ -1,0 +1,36 @@
+#
+# /etc/xinetd.d/mysqlchk
+#
+service mysqlchk_status
+{
+        flags           = REUSE
+        type            = UNLISTED
+        socket_type     = stream
+        port            = 9200
+        wait            = no
+        user            = root
+        server          = /sysadmin/mysql/mysqlchk_status
+        log_on_failure  += USERID
+        disable         = no
+		per_source		= UNLIMITED
+		cps				= 999999
+		max_load		= 9999
+        only_from       = 10.0.0.0/8 127.0.0.1
+}
+ 
+service mysqlchk_replication
+{
+        flags           = REUSE
+        type            = UNLISTED
+        socket_type     = stream
+        port            = 9201
+        wait            = no
+        user            = root
+        server          = /sysadmin/mysql/mysqlchk_replication
+        log_on_failure  += USERID
+        disable         = no
+		per_source		= UNLIMITED
+		cps				= 999999
+		max_load		= 9999
+        only_from       = 10.0.0.0/8 127.0.0.1
+}

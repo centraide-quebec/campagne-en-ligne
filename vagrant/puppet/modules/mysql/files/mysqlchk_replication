@@ -1,0 +1,65 @@
+#!/bin/bash
+#
+# mysqlchk_status.sh
+#
+# This script checks if a mysql server is healthy running on localhost. It will
+# return:
+#
+# "HTTP/1.x 200 OK\r" (if mysql is running smoothly)
+#
+# - OR -
+#
+# "HTTP/1.x 500 Internal Server Error\r" (else)
+#
+# The purpose of this script is make haproxy capable of monitoring mysql properly
+#
+# Author: Unai Rodriguez
+# Script modified by Alex Williams - August 4, 2009
+#       - removed the need to write to a tmp file, instead store results in memory
+# Script modified by Jerome Oufella - June 1, 2010
+#       - Support debian-provided administration file
+REPLAG_MAX=1
+ 
+
+# We perform a simple query that should return a few results :-p
+MYSQL_OUTPUT=$(/usr/bin/mysql \
+	--defaults-file=/etc/mysql/debian.cnf \
+	-e "SHOW SLAVE STATUS \G" 2> /dev/null)
+ 
+# Verify replication status
+REPLAG=$(echo $MYSQL_OUTPUT | sed -r -e 's/^.*Seconds_Behind_Master:.([[:alnum:]]+).*$/\1/')
+# Check replication engine is up
+if echo $MYSQL_OUTPUT | grep -q 'Slave_IO_Running: Yes'; then
+	# Check replication engine is up
+	if echo $MYSQL_OUTPUT | grep -q 'Slave_SQL_Running: Yes'; then
+		# Check replication lag is numeric
+		if echo $REPLAG | egrep -q '^[0-9]+$'; then
+			# Check replication lag is smaller than REPLAG_MAX
+			if [ $REPLAG -le $REPLAG_MAX ]; then
+				REPLICATION_UP=yes
+			fi
+		fi
+	fi
+fi
+
+# Check the output. If it is not empty then everything is fine and we return
+# something. Else, we just do not return anything.
+#
+if [ "$REPLICATION_UP" = "yes" ]
+then
+	# replication is fine, return http 200
+	echo -ne "HTTP/1.1 200 OK\r\n"
+	echo -ne "Content-Type: Content-Type: text/plain\r\n"
+	echo -ne "\r\n"
+	echo -ne "Running.\r\n"
+	echo -ne "\r\n"
+else
+	# replication is not ready, return http 503
+	echo -ne "HTTP/1.1 503 Service Unavailable\r\n"
+	echo -ne "Content-Type: Content-Type: text/plain\r\n"
+	echo -ne "\r\n"
+	echo -ne "*Down*.\r\n"
+	echo -ne "\r\n"
+fi
+
+# EOF

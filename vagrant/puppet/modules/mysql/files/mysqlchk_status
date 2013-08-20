@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# mysqlchk_status.sh
+#
+# This script checks if a mysql server is healthy running on localhost. It will
+# return:
+#
+# "HTTP/1.x 200 OK\r" (if mysql is running smoothly)
+#
+# - OR -
+#
+# "HTTP/1.x 500 Internal Server Error\r" (else)
+#
+# The purpose of this script is make haproxy capable of monitoring mysql properly
+#
+# Author: Unai Rodriguez
+# Script modified by Alex Williams - August 4, 2009
+#       - removed the need to write to a tmp file, instead store results in memory
+# Script modified by Jerome Oufella - June 1, 2010
+#       - Support debian-provided administration file
+ 
+
+# Read the client query (must be GET /dbs)
+read client_query
+if ! echo $client_query | grep -q '^GET /dbs'; then
+	exit 0
+fi
+
+if [ -e /etc/nomysql ]; then
+	Reason="Admin prohibition enabled"
+fi
+
+# We perform a simple query that should return a few results :-p
+ERROR_MSG=$(/usr/bin/mysql \
+	--defaults-file=/etc/mysql/debian.cnf \
+	-e "SHOW DATABASES;" 2> /dev/null)
+
+# Check the output. If it is not empty then everything is fine and we return
+# something. Else, we just do not return anything.
+#
+if [ -z "$Reason" -a "$ERROR_MSG" != "" ]
+then
+	# mysql is fine, return http 200
+	echo -ne "HTTP/1.1 200 OK\r\n"
+	echo -ne "Content-Type: Content-Type: text/plain\r\n"
+	echo -ne "\r\n"
+	echo -ne "Running.\r\n"
+	echo -ne "\r\n"
+else
+	# mysql is stopped, return http 503
+	echo -ne "HTTP/1.1 503 Service Unavailable\r\n"
+	echo -ne "Content-Type: Content-Type: text/plain\r\n"
+	echo -ne "\r\n"
+	echo -ne "*Down* $Reason\r\n"
+	echo -ne "\r\n"
+fi
+
+# EOF

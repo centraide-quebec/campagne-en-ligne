@@ -1,0 +1,7 @@
+# File Managed by puppet
+# MySQL Performance Settings
+
+[mysqld]
+innodb_log_group_home_dir	= /var/lib/mysql/innodb_logs
+innodb_log_file_size		= <%= innodb_log_file_size %>
+innodb_buffer_pool_size		= <%= innodb_buffer_pool_size %>
