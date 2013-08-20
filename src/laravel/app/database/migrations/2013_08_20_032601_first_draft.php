@@ -15,7 +15,6 @@ class FirstDraft extends Migration {
 		Schema::create('Campaign', function($table)
 		{
 		    $table->bigIncrements('id');
-		    // $table->primary('id');
 		    $table->dateTime('started_at');
 		   	$table->dateTime('ended_at');
 		    $table->timestamps();
@@ -24,19 +23,16 @@ class FirstDraft extends Migration {
 
 		Schema::create('Division', function($table){
 			$table->bigIncrements('id');
-			// $table->primary('id');
 			$table->string('name', 250);
 			$table->timestamps();
 		});
 
 		Schema::create('Enterprise', function($table){
 			$table->bigIncrements('id');
-			// $table->primary('id');
 			$table->string('name', 250);
 			$table->string('logo', 250)->nullable();
 			$table->string('slug', 250);
-			$table->foreign('division_id')
-				->references('id')->on('Division')->unsigned();
+			$table->bigInteger('division_id')->unsigned();
 			$table->integer('payroll_quantity')->default(0);
 			$table->string('facebook_link', 250)->nullable();
 			$table->string('twitter_link', 250)->nullable();
@@ -45,37 +41,39 @@ class FirstDraft extends Migration {
 			$table->string('youtube_link', 250)->nullable();
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->foreign('division_id')->references('id')->on('Division');
 		});
 
 		Schema::create('EnterpriseCampaign', function($table){
 			$table->bigIncrements('id');
-			// $table->primary('id');
-			$table->foreign('campaign_id')
-				->references('id')->on('Campaign')->unsigned();
-			$table->foreign('enterprise_id')
-				->references('id')->on('Enterprise')->unsigned();
+			$table->bigInteger('campaign_id')->unsigned();
+			$table->bigInteger('enterprise_id')->unsigned();
 			$table->decimal('goal_amount', 14, 2);
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->foreign('campaign_id')->references('id')->on('Campaign');
+			$table->foreign('enterprise_id')->references('id')->on('Enterprise');
 		});
 
 		Schema::create('EnterpriseBadge', function($table){
 			$table->bigIncrements('id');
-			// $table->primary('id');
 			$table->string('name', 250);
-			$table->foreign('enterprise_id')
-				->references('id')->on('Enterprise')->unsigned();
+			$table->bigInteger('enterprise_id')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->foreign('enterprise_id')->references('id')->on('Enterprise');
 		});
 
 		Schema::create('EnterpriseActivity', function($table){
 			$table->bigIncrements('id');
-			// $table->primary('id');
-			$table->foreign('enterprise_id')
-				->references('id')->on('Enterprise')->unsigned();
+			$table->bigInteger('enterprise_id')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->foreign('enterprise_id')->references('id')->on('Enterprise');
 		});
 
 		Schema::create('CreditCard', function($table){
@@ -91,23 +89,19 @@ class FirstDraft extends Migration {
 
 		Schema::create('BankAccount', function($table){
 			$table->bigIncrements('id');
-			// $table->primary('id');
 			$table->timestamps();
 			$table->softDeletes();
 		});
 
 		Schema::create('PrivacyLevel', function($table){
 			$table->bigIncrements('id');
-			// $table->primary('id');
 			$table->string('name', 250);
 			$table->timestamps();
 		});
 
 		Schema::create('Employee', function($table){
 			$table->bigIncrements('id');
-			// $table->primary('id');
-			$table->foreign('enterprise_id')
-				->references('id')->on('Enterprise')->unsigned();
+			$table->bigInteger('enterprise_id')->unsigned();
 			$table->string('first_name', 250);
 			$table->string('middle_name', 250);
 			$table->string('last_name', 250);
@@ -121,49 +115,52 @@ class FirstDraft extends Migration {
 			$table->string('email_work', 250)->unique();
 			$table->string('email_personal', 250);
 			$table->string('email_newsletter', 250);
-			$table->boolean('has_subscribed_to_newsletter')
-				->default(false);
-			$table->foreign("privacy_level_id")->references('id')
-				->on("PrivacyLevel")->unsigned();
-			$table->foreign("credit_card_id")->references('id')
-				->on("CreditCard")->unsigned();
-			$table->foreign('bank_account_id')->references('id')
-				->on('BankAccount')->unsigned();
+			$table->boolean('has_subscribed_to_newsletter')->default(false);
+			$table->bigInteger('privacy_level_id')->unsigned();
+			$table->bigInteger('credit_card_id')->unsigned();
+			$table->bigInteger('bank_account_id')->unsigned();
 			$table->string('enterprise_internal_number', 250)->nullable();
 			$table->dateTime('clicked_email_at')->nullable();
 			$table->string('newsletter_hashed_link')->unique();
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->foreign('enterprise_id')->references('id')->on('Enterprise');
+			$table->foreign("privacy_level_id")->references('id')->on("PrivacyLevel");
+			$table->foreign("credit_card_id")->references('id')->on("CreditCard");
+			$table->foreign('bank_account_id')->references('id')->on('BankAccount');
 		});
 
 		Schema::create('EmployeeBadge', function($table){
 			$table->bigIncrements('id');
-			// $table->primary('id');
 			$table->string('name', 250);
-			$table->foreign('employee_id')
-				->references('id')->on('Employee')->unsigned();
+			$table->bigInteger('employee_id')->unsigned();
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->foreign('employee_id')->references('id')->on('Employee');
 		});
 
 		Schema::create('Donation', function($table){
 			$table->bigIncrements('id');
-			$table->foreign('employee_id')
-				->references('id')->on('Employee')->unsigned();
+			$table->bigInteger('employee_id')->unsigned();
 			$table->integer('donation_type');
 			$table->decimal('amount', 14, 2)->default(0);
 			$table->timestamps();
 			$table->softDeletes();
+
+			$table->foreign('employee_id')->references('id')->on('Employee');
 		});
 
 		Schema::create('EmployeeActivity', function($table){
 			$table->bigIncrements('id');
-			$table->foreign('employee_id')
-				->references('id')->on('Employee')->unsigned();
-			$table->foreign('donation_id')
-				->references('id')->on('Donation')->unsigned();
+			$table->bigInteger('employee_id')->unsigned();
+			$table->bigInteger('donation_id')->unsigned();
 			$table->decimal('amount', 14, 2)->default(0);
 			$table->timestamps();
+
+			$table->foreign('donation_id')->references('id')->on('Donation');
+			$table->foreign('employee_id')->references('id')->on('Employee');
 		});
 	}
 
