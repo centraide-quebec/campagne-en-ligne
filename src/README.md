@@ -10,7 +10,7 @@ Vous devez ensuite lui indiquer de construire le reste de ces dépendances comme
 
 ### Construire le projet et le voir à l'oeuvre
 
-1: Rendez vous dans le dossier */src/laravel*
+1: Rendez vous dans le dossier *src/laravel*
 
 2: Tapez la commande suivante:
 
@@ -21,3 +21,10 @@ Vous devez ensuite lui indiquer de construire le reste de ces dépendances comme
 4: Tapez l'adresse suivante dans votre navigateur
 
     localhost:8080
+    
+### Effectuer les migrations de la base de données
+
+1: Rendez vous dans le dossier *src/laravel*
+2: Tapez la commande suivante:
+
+    php artisan migrate
