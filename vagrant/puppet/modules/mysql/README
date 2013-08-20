@@ -1,0 +1,71 @@
+MySQL
+=====
+
+This module is based on the original work of David Schmitt, especially for the provider.
+It has been developed under Ubuntu 10.04.
+
+= Overview
+
+Mysql server module. It will install mysql server (and maatik package), and configure it. You can configure, master/slave, master/master replication also. Several class can be used:
+- mysql::server: basic standard mysql server
+- mysql::server::replicated: to configure replication (master/slave for example)
+- mysql::server::raid: standard mysql server based on a software raid device which will be created if it doesn't exist, else will be mounted. See Sysadmin::Raid::Raiddevice
+- mysql::server::replicated::raid: same as raid but with also replication options
+
+Functions:
+- mysql::user($user, $password, $host="localhost", $ensure="present"): to create a mysql user
+- mysql::rights ($database="", $user, $host="localhost", $privs ): to give right to a mysql user
+- mysql::rights::superuser($database="", $user, $host="localhost", $ensure="present", $privileges = ['all']), to give sysadmin right to a user
+- mysql::rights::standard($database="", $user, $host="localhost", $ensure="present", $privileges = [ "select_priv", "insert_priv", "update_priv", "delete_priv", "create_priv", "alter_priv", "index_priv", "drop_priv", "create_tmp_table_priv", "lock_tables_priv", "show_view_priv", "create_routine_priv", "alter_routine_priv", "execute_priv", "create_view_priv" ] ), a template function to give standard right to a user
+- mysql::database($ensure=present), to create a database
+- mysql::database::viaexec($database): Creates a database in mysql AND check before doing so that replication is OK
+
+== Parameters
+
+mysql::server
+- $mysql_specific_settings (default: no_override.cnf)
+- $mysql_listen_network (default: false)
+- $backup_mysql_rotate (default: 7): this is for bacula backup 
+- $innodb_log_file_size (default: 128M)
+- $innodb_buffer_pool_size (default: 128M)
+- $mysql_exists (default: none), if set to true, this delete user root@<computer> root@localhost, @localhost, @<computer>
+
+mysql::server::replicated
+- $mysql_server_id: The mysql server id which must be unique for each peer of a replication setup
+- $mysql_auto_increment_offset: The starting point to auto increment values. Should be *different* on all host. Values range from 1....N
+- $mysql_auto_increment_increment: The increment for auto increment values should be *equal* to the number of servers and identical on all hosts
+- $mysql_replicate_user (default: replicate): The user name for the replication user
+- $mysql_replicate_password (default: Fei8ohg8aePhai7al2Ai): The user password for the replication user
+- $mysql_replicate_peer: The host with which replication is running
+- $mysql_replicate_allowed_override (optional): if set to true, allows to override the host part of the user declaration in mysql, For example in cases where you cannot control the reverse lookups
+
+
+= Usage
+
+  node "mynode" inherits ... {
+    mysql::database{'dbtest':}
+    mysql::user { 'test_user' :
+        require  => Service['mysql'],
+        password    => 'test',
+        host        => 'localhost'
+    }
+    mysql::rights::standard { 'dbtest_test' : database => "dbtest", user => 'test', host => 'localhost'  }
+    include mysql::server
+  }
+
+Contact
+-------
+
+Bruno Leon <bruno.leon@savoirfairelinux.com>
+
+License
+-------
+
+This software is distributed under the GNU General Public License
+version 2 or any later version. See the LICENSE file for details.
+
+Copyright
+---------
+
+Copyright (C) 2011 Savoir-faire Linux Inc.
+
