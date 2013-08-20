@@ -25,6 +25,7 @@ Vous devez ensuite lui indiquer de construire le reste de ces dépendances comme
 ### Effectuer les migrations de la base de données
 
 1: Rendez vous dans le dossier *src/laravel*
+
 2: Tapez la commande suivante:
 
     php artisan migrate
