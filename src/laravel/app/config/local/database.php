@@ -55,8 +55,8 @@ return array(
         'mysql' => array(
             'driver'    => 'mysql',
             'host'      => 'localhost',
-            'database'  => 'centraide-campagne-en-ligne',
-            'username'  => 'root',
+            'database'  => 'centraide',
+            'username'  => 'vagrant',
             'password'  => 'vagrant',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
