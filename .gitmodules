@@ -4,9 +4,3 @@
 [submodule "vagrant/puppet/modules/composer"]
 	path = vagrant/puppet/modules/composer
 	url = git@github.com:experience/vagrant-puppet-composer.git
-[submodule "vagrant/puppet/modules/puppet-mysql"]
-	path = vagrant/puppet/modules/puppet-mysql
-	url = git@github.com:camptocamp/puppet-mysql.git
-[submodule "vagrant/puppet/modules/puppet-augeas"]
-	path = vagrant/puppet/modules/puppet-augeas
-	url = git@github.com:camptocamp/puppet-augeas.git
