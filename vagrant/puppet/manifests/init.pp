@@ -15,4 +15,4 @@ file {
     owner    => 'vagrant';
 }
 
-# class{'mysql::install':}
+class{'mysql::install':}
