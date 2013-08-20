@@ -136,6 +136,16 @@ class FirstDraft extends Migration {
 			$table->softDeletes();
 		});
 
+		Schema::create('EmployeeBadge', function($table){
+			$table->bigIncrements('id');
+			// $table->primary('id');
+			$table->string('name', 250);
+			$table->foreign('employee_id')
+				->references('id')->on('Employee')->unsigned();
+			$table->timestamps();
+			$table->softDeletes();
+		});
+
 		Schema::create('Donation', function($table){
 			$table->bigIncrements('id');
 			$table->foreign('employee_id')
@@ -173,6 +183,9 @@ class FirstDraft extends Migration {
 		Schema::dropIfExists('Employee');
 		Schema::dropIfExists('CreditCard');
 		Schema::dropIfExists('BankAccount');
+		Schema::dropIfExists('Donation');
+		Schema::dropIfExists('EmployeeActivity');
+		Schema::dropIfExists('EmployeeBadge');
 	}
 
 }
