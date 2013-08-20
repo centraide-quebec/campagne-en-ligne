@@ -7,12 +7,15 @@ class{'apache2::install':}
 class{'php5::install':}
 class{'curl':}
 class{'composer':}
+class{'mysql':}
 
-file {
-    '/var/www/':
-    ensure  => 'directory',
-    mode    => '0755',
-    owner    => 'vagrant';
+mysql::password { "root":
+    username => "root",
+    password => "vagrant",
 }
 
-class{'mysql::install':}
+mysql::create_database { "centraide-campagne-en-ligne":
+    username => "root",
+    password => "vagrant",
+    root_password => "vagrant"
+}
