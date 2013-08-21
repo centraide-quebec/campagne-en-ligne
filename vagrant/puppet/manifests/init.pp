@@ -39,3 +39,11 @@ mysql::rights::standard { 'vagrant' :
   user     => 'vagrant',
   host     => 'localhost',
 }
+
+package { "git": }
+
+exec { "dependency_install" :
+    command => "/usr/local/bin/composer install --prefer-dist",
+    cwd     => "/var/www/laravel",
+    require => [ Class["php5::install"], Package["git"] ],
+}
