@@ -50,3 +50,14 @@ un serveur de développement de la manière suivante :
     php -S localhost:8000 -t code
     open http://localhost:8000
 
+## Communications
+
+### IRC
+
+* irc.freenode.net#centraide-campagne-en-ligne
+
+### Gestion de projet
+
+* https://trello.com/b/oAERdyZ4/centraide-campagne-en-ligne
+
+

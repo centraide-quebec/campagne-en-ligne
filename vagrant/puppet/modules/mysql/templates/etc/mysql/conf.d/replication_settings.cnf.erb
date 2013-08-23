@@ -1,0 +1,38 @@
+# File Managed by puppet
+# MySQL Replication Settings
+# Let's assume we have N MySQL nodes, then auto_increment_increment has the value N on all nodes
+# and each node must have a different value for auto_increment_offset (1, 2, ..., N).
+[mysqld]
+server-id					= <%= mysql_server_id %>
+auto-increment-offset		= <%= mysql_auto_increment_offset %>
+auto-increment-increment	= <%= mysql_auto_increment_increment %>
+
+<% if mysql_replicate_user_tables == false then -%>
+#We do not want credentials database to be replicated. Credentials must be managed by puppet directly
+replicate-ignore-table		= mysql.user
+replicate-ignore-table		= mysql.db
+<% end -%>
+
+log-bin						= mysql-binlog
+max-binlog-size				= 100M
+expire_logs_days			= 10
+
+relay-log					= mysql-relaylog
+relay-log-index				= mysql-relaylog.index
+relay-log-info-file			= mysql-relaylog.info
+max-relay-log-size			= 100M
+relay-log-space-limit		= 1G
+
+master-host					= <%= mysql_replicate_peer %>
+master-user					= <%= mysql_replicate_user %>
+master-password				= <%= mysql_replicate_password %>
+
+<% if mysql_skip_name_resolve == true then %>skip-name-resolve<% end %>
+<% if mysql_replicate_do_db then -%>
+<% mysql_replicate_do_db.each do |do_db| -%>
+replicate-do-db = <%= do_db %>
+<% end -%>
+<% end -%>
+<% mysql_replicate_ignore_table.each do |ignore_table| -%>
+replicate-ignore-table = <%= ignore_table %>
+<% end -%>
