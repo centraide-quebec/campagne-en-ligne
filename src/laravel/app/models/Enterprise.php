@@ -17,4 +17,9 @@ class Enterprise extends Eloquent {
     protected $guarded = array('id');
 
 	public static $rules = array();
+
+    public function campaigns()
+    {
+        return $this->belongsToMany('Campaign', 'EnterpriseCampaign');
+    }
 }
