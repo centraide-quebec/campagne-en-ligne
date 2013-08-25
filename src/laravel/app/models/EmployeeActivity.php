@@ -8,7 +8,13 @@ class EmployeeActivity extends Eloquent {
      * @var string
      */
     protected $table = "EmployeeActivity";
-	protected $guarded = array();
+
+    /**
+     * The mass assignment blacklist.
+     *
+     * @var array
+     */
+    protected $guarded = array('id');
 
 	public static $rules = array();
 }

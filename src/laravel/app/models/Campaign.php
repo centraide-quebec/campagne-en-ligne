@@ -8,7 +8,13 @@ class Campaign extends Eloquent {
      * @var string
      */
     protected $table = "Campaign";
-	protected $guarded = array();
+
+    /**
+     * The mass assignment blacklist.
+     *
+     * @var array
+     */
+    protected $guarded = array('id');
 
 	public static $rules = array();
 }

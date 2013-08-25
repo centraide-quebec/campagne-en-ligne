@@ -8,7 +8,13 @@ class Enterprise extends Eloquent {
      * @var string
      */
     protected $table = "Enterprise";
-	protected $guarded = array();
+
+    /**
+     * The mass assignment blacklist.
+     *
+     * @var array
+     */
+    protected $guarded = array('id');
 
 	public static $rules = array();
 }

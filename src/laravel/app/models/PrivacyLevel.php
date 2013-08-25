@@ -8,7 +8,13 @@ class PrivacyLevel extends Eloquent {
      * @var string
      */
     protected $table = "PrivacyLevel";
-	protected $guarded = array();
+
+    /**
+     * The mass assignment blacklist.
+     *
+     * @var array
+     */
+    protected $guarded = array('id');
 
 	public static $rules = array();
 }
