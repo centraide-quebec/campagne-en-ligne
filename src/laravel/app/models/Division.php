@@ -1,7 +1,20 @@
 <?php
 
 class Division extends Eloquent {
-	protected $guarded = array();
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = "Division";
+
+    /**
+     * The mass assignment blacklist.
+     *
+     * @var array
+     */
+    protected $guarded = array('id');
 
 	public static $rules = array();
 }
