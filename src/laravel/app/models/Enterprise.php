@@ -22,4 +22,9 @@ class Enterprise extends Eloquent {
     {
         return $this->belongsToMany('Campaign', 'EnterpriseCampaign');
     }
+
+    public function division()
+    {
+        return Division::find($this->division_id);
+    }
 }
