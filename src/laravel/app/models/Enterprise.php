@@ -1,7 +1,30 @@
 <?php
 
 class Enterprise extends Eloquent {
-	protected $guarded = array();
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = "Enterprise";
+
+    /**
+     * The mass assignment blacklist.
+     *
+     * @var array
+     */
+    protected $guarded = array('id');
 
 	public static $rules = array();
+
+    public function campaigns()
+    {
+        return $this->belongsToMany('Campaign', 'EnterpriseCampaign');
+    }
+
+    public function division()
+    {
+        return Division::find($this->division_id);
+    }
 }
