@@ -32,10 +32,10 @@ class centraide::app {
 
     file { "/var/www/laravel/app/storage":
         ensure  => 'directory',
+        recurse => true,
         owner => vagrant,
         group => vagrant,
-        mode  => 777,
-        recurse => true
+        mode  => '0777'
     }
 
 
