@@ -18,4 +18,8 @@ class{"centraide::app":
 	stage => last
 }
 
+user { "www-data":
+    groups => "vagrant",
+    notify => Service["apache2"],
+}
 
