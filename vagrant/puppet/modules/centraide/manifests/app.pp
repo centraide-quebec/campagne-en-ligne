@@ -38,12 +38,4 @@ class centraide::app {
         mode  => '0777'
     }
 
-
-    user { "www-data":
-        groups => "vagrant",
-        require => Class['apache2::install']
-    }
-
-
-
 }
