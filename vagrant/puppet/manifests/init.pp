@@ -1,3 +1,8 @@
+
+# Use stage to make sure centraide module is executed at the end
+stage { 'last': }
+Stage['main'] -> Stage['last']
+
 exec { "apt_update":
   command => "apt-get update",
   path    => "/usr/bin"
@@ -8,34 +13,13 @@ class{'php5::install':}
 class{'curl':}
 class{'composer':}
 
-class {'mysql::server': }
 
-file { '/var/www/laravel/public':
-    ensure  => 'directory',
-    mode    => '0755',
-    owner    => 'vagrant';
+class{"centraide::app":
+	stage => last
 }
 
-file { "/var/www/laravel/storage":
-  owner => vagrant,
-  group => vagrant,
-  mode  => 777,
-  recurse => true
+user { "www-data":
+    groups => "vagrant",
+    notify => Service["apache2"],
 }
 
-mysql_database { 'centraide':
-  ensure => present;
-}
-
-mysql::user { 'vagrant' :
-  ensure => present,
-  require  => Service['mysql'],
-  password => 'vagrant',
-  host     => 'localhost'
-}
-
-mysql::rights::standard { 'vagrant' :
-  database => 'centraide',
-  user     => 'vagrant',
-  host     => 'localhost',
-}

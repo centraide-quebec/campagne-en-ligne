@@ -4,7 +4,6 @@ define mysql::rights (
   $host = 'localhost',
   $privs
   ) {
-  if $mysql_exists == 'true' {
     if $database != "" {
       mysql_grant { "${user}@${host}/${database}":
         privileges => $privileges,
@@ -14,5 +13,4 @@ define mysql::rights (
         privileges => $privs,
       }
     }
-  }
 }
