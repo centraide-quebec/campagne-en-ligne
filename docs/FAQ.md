@@ -1,5 +1,19 @@
 ## FAQ
 
+### Comment puis-je contacter les personnes ressources de ce projet ?
+
+#### Tableau de bord pour la gestion de projet
+
+* https://trello.com/b/oAERdyZ4/centraide-campagne-en-ligne
+
+#### IRC
+
+* irc.freenode.net#centraide-campagne-en-ligne
+
+#### Équipe de travail
+
+https://github.com/centraide-quebec/campagne-en-ligne/wiki/%C3%89quipe-de-travail
+
 ### Comment est structuré le projet ?
 
 Voici une explication des dossiers se trouvant à la racine du projet.
