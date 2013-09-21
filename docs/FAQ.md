@@ -1,6 +1,6 @@
 ## FAQ
 
-### Comment est structurer le projet ?
+### Comment est structuré le projet ?
 
 Voici une explication des dossiers se trouvant à la racine du projet.
 
