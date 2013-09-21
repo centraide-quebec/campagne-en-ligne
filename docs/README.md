@@ -46,7 +46,8 @@ Lorsque vous voulez **détruire** la machine virtuelle:
 
     vagrant destroy
 
-    *Toutes les commandes ci-dessous doivent être éxécutés dans le dossier /vagrant*
+
+`Toutes les commandes ci-dessous doivent être éxécutés dans le dossier */vagrant*`
 
 #### Les dossiers importants sur la VM
 
