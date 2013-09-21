@@ -6,18 +6,15 @@ Icon
 
 # Thumbnails
 ._*
-
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-
 ### Windows ###
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
-
 # Folder config file
 Desktop.ini
-
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+/src-test/

@@ -43,8 +43,6 @@
 
     </head>
     <body>
-
-
         <div id="page" class="container">
 
                 <aside id="sidebar">

@@ -17,6 +17,15 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
+
+		// TODO: fetch the latest activities
+		//
+		// TODO: fetch the company donation ranking
+		//
+		// TODO: fetch the user donation ranking
+		//
+		// TODO: fetch the campaign's goal + contributions until now
+
 		return View::make('home');
 	}
 
