@@ -49,3 +49,5 @@ un serveur de développement de la manière suivante :
 
     php -S localhost:8000 -t code
     open http://localhost:8000
+    
+**Pour installer le projet sur votre poste, veuillez consulter le fichier `/docs/README.md`.**
