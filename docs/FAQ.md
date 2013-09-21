@@ -1,6 +1,6 @@
 ## FAQ
 
-### Comment est structurer le projet ?
+### Comment est structuré le projet ?
 
 Voici une explication des dossiers se trouvant à la racine du projet.
 
@@ -52,15 +52,14 @@ Vous devez par contre lui indiquer ces changements.
 
 Vous pouvez voir des exemples de migration dans le dossier */src/app/database/migrations*.
 
-Ne vous inquiétiez pas pour les nos de fichiers; ils sont auto-généré par *artisan*.
+Ne vous inquiétiez pas pour les noms de fichiers; ils sont auto-généré par *artisan*.
 
-### Qu'est-ce qu'*artisan* ?
+### Qu'est-ce qu'artisan ?
 
 C'est une [interface de ligne de commande](http://laravel.com/docs/artisan) inclus à même *Laravel*.
 
-Vous pouvez voir toutes les commandes disponibles avec la procédure suivante:
+Vous pouvez voir toutes les commandes disponibles en vous connectant à la VM en SSH et en roulant la commande suivante dans le dossier *src*:
 
-    $ cd src
     $ php artisan list
 
 Vous verrez alors défiler une grande quantité de commandes très pratiques.

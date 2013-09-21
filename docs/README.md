@@ -50,5 +50,5 @@ Lorsque vous voulez **détruire** la machine virtuelle:
 
 #### Les dossiers importants sur la VM
 
-* répertoire hébergeant le code source: */var/www/laravel*.
-* répertoire des logs d'erreurs: */var/logs/apache2/*
+* répertoire hébergeant le code source: */var/www*.
+* répertoire des logs d'erreurs: */var/logs/apache2*
