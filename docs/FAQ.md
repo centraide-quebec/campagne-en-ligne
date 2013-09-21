@@ -58,7 +58,7 @@ Ne vous inquiétiez pas pour les noms de fichiers; ils sont auto-généré par *
 
 C'est une [interface de ligne de commande](http://laravel.com/docs/artisan) inclus à même *Laravel*.
 
-Vous pouvez voir toutes les commandes disponibles en vous connectant à la VM en SSH et roulant la commande suivante dans le dossier *src*:
+Vous pouvez voir toutes les commandes disponibles en vous connectant à la VM en SSH et en roulant la commande suivante dans le dossier *src*:
 
     $ php artisan list
 
