@@ -10,15 +10,15 @@ class{'composer':}
 
 class {'mysql::server': }
 
-file { '/var/www/laravel/public':
+file { '/var/www/app/public':
     ensure  => 'directory',
     mode    => '0755',
     owner    => 'vagrant';
 }
 
-file { "/var/www/laravel/storage":
-  owner => vagrant,
-  group => vagrant,
+file { "/var/www/app/storage":
+  owner => 'vagrant',
+  group => 'vagrant',
   mode  => 777,
   recurse => true
 }
