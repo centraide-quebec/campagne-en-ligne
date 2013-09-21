@@ -11,6 +11,12 @@ class RemoveCreditCardTable extends Migration {
 	 */
 	public function up()
 	{
+		Schema::table('Employee', function($table)
+		{
+			$table->dropForeign('employee_credit_card_id_foreign');
+			$table->dropColumn('credit_card_id');
+		});
+
 		Schema::dropIfExists('CreditCard');
 	}
 
@@ -30,6 +36,12 @@ class RemoveCreditCardTable extends Migration {
 			$table->string('cvc', 25);
 			$table->timestamps();
 			$table->softDeletes();
+		});
+
+		Schema::table('Employee', function($table)
+		{
+			$table->bigInteger('credit_card_id')->unsigned();
+			$table->foreign("credit_card_id")->references('id')->on("CreditCard");
 		});
 	}
 
