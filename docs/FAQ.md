@@ -8,7 +8,12 @@
 
 #### IRC
 
-* irc.freenode.net#centraide-campagne-en-ligne
+C'est un chat system qui date d'avant ICQ & MSN :)
+
+http://www.irchelp.org/irchelp/irctutorial.html
+
+`irc.freenode.net#centraide-campagne-en-ligne`
+
 
 #### Équipe de travail
 
