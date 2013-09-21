@@ -44,20 +44,8 @@ nroberge@evollia.com
 ## Guide de démarrage
 
 Vous pouvez déjà consulter les maquettes qui ont été intégrées dans des simples
-fichiers PHP dans le dossier `code`. Si vous avez PHP 5.4+ vous pouvez rouler
+fichiers PHP dans le dossier `html-integration`. Si vous avez PHP 5.4+ vous pouvez rouler
 un serveur de développement de la manière suivante :
 
     php -S localhost:8000 -t code
     open http://localhost:8000
-
-## Communications
-
-### IRC
-
-* irc.freenode.net#centraide-campagne-en-ligne
-
-### Gestion de projet
-
-* https://trello.com/b/oAERdyZ4/centraide-campagne-en-ligne
-
-
