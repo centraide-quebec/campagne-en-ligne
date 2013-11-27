@@ -1,4 +1,5 @@
 
+
 # Use stage to make sure centraide module is executed at the end
 stage { 'last': }
 Stage['main'] -> Stage['last']
@@ -17,9 +18,10 @@ class{'composer':}
 class{"centraide::app":
 	stage => last
 }
-
 user { "www-data":
     groups => "vagrant",
     notify => Service["apache2"],
 }
+
+include centraide
 

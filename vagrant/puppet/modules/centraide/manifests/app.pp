@@ -2,8 +2,6 @@
 class centraide::app {
 	include centraide::db
 
-    package { "git": }
-
     exec { "composer_dependency_install" :
         command => "/usr/local/bin/composer install --prefer-dist && /usr/local/bin/composer dump-autoload",
         cwd     => "/var/www",
